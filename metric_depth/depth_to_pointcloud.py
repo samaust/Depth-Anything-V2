@@ -20,11 +20,12 @@ Arguments:
 """
 
 import argparse
-import cv2
 import glob
+import os
+
+import cv2
 import numpy as np
 import open3d as o3d
-import os
 from PIL import Image
 import torch
 

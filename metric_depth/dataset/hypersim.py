@@ -25,13 +25,12 @@ def hypersim_distance_to_depth(npyDistance):
 
 class Hypersim(Dataset):
     def __init__(self, filelist_path, mode, size=(518, 518)):
-        
         self.mode = mode
         self.size = size
-        
+
         with open(filelist_path, 'r') as f:
             self.filelist = f.read().splitlines()
-        
+
         net_w, net_h = size
         self.transform = Compose([
             Resize(
@@ -46,28 +45,28 @@ class Hypersim(Dataset):
             NormalizeImage(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
             PrepareForNet(),
         ] + ([Crop(size[0])] if self.mode == 'train' else []))
-        
+
     def __getitem__(self, item):
         img_path = self.filelist[item].split(' ')[0]
         depth_path = self.filelist[item].split(' ')[1]
-        
+
         image = cv2.imread(img_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) / 255.0
-        
+
         depth_fd = h5py.File(depth_path, "r")
         distance_meters = np.array(depth_fd['dataset'])
         depth = hypersim_distance_to_depth(distance_meters)
-        
+
         sample = self.transform({'image': image, 'depth': depth})
 
         sample['image'] = torch.from_numpy(sample['image'])
         sample['depth'] = torch.from_numpy(sample['depth'])
-        
+
         sample['valid_mask'] = (torch.isnan(sample['depth']) == 0)
         sample['depth'][sample['valid_mask'] == 0] = 0
-        
+
         sample['image_path'] = self.filelist[item].split(' ')[0]
-        
+
         return sample
 
     def __len__(self):

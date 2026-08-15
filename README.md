@@ -49,8 +49,11 @@ We provide **four models** of varying scales for robust relative depth estimatio
 ```bash
 git clone https://github.com/DepthAnything/Depth-Anything-V2
 cd Depth-Anything-V2
-pip install -r requirements.txt
+pip install .
 ```
+
+For editable development installs, use `pip install -e .`. To run the Gradio
+demo, install its additional dependencies with `pip install -r requirements.txt`.
 
 Download the checkpoints listed [here](#pre-trained-models) and put them under the `checkpoints` directory.
 

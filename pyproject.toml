@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61", "setuptools-scm[simple]>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "depth_anything_v2"
+description = "depth_anything_v2"
+dynamic = ["version"]
+license = "Apache-2.0"
+dependencies = [
+    "numpy",
+    "opencv-python",
+    "torch",
+    "torchvision"
+]
+
+[tool.setuptools]
+packages = [
+    "depth_anything_v2",
+    "depth_anything_v2.dinov2_layers",
+    "depth_anything_v2.utils",
+]
+include-package-data = false
+
+[tool.setuptools_scm]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[project.urls]
+Repository = "https://github.com/samaust/Depth-Anything-V2"
