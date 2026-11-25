@@ -1,6 +1,2 @@
-gradio_imageslider
-gradio==4.29.0
-matplotlib
-opencv-python
-torch
-torchvision
+# pyproject.toml is the dependency source of truth.
+-e .

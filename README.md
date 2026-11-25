@@ -52,8 +52,7 @@ cd Depth-Anything-V2
 pip install .
 ```
 
-For editable development installs, use `pip install -e .`. To run the Gradio
-demo, install its additional dependencies with `pip install -r requirements.txt`.
+For editable development installs, use `pip install -e .`.
 
 Download the checkpoints listed [here](#pre-trained-models) and put them under the `checkpoints` directory.
 

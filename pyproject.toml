@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "depth_anything_v2"
 description = "depth_anything_v2"
 dynamic = ["version"]
+requires-python = ">=3.10"
 license = "Apache-2.0"
 dependencies = [
     "numpy",
